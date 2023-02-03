@@ -22,17 +22,14 @@ fn calorie_counting(path: String) -> i32 {
             biggest_sum = sum;
             right_elf = elf_count;
         }
-
-        println!("Elf {} has {}", elf_count, sum);
-        println!("Biggest sum: {} || Answer: {}", biggest_sum, right_elf);
     }
 
-   
+    println!("{} is carrying the most amount of calories: {}", right_elf, biggest_sum);   
     right_elf
 }
 
 fn main() {
-    println!("{}", calorie_counting("./input2.txt".to_string()));
+
 }
 
 #[cfg(test)]
@@ -41,7 +38,12 @@ mod tests {
 
     #[test]
     fn test_day1() {
-        assert_eq!(calorie_counting("./input.txt".to_string()), 4);
+        assert_eq!(calorie_counting("./inputs/day1/input.txt".to_string()), 4);
+    }
+
+    #[test]
+    fn test_day1_2() {
+        assert_eq!(calorie_counting("./inputs/day1/input2.txt".to_string()), 216);
     }
 }
 
