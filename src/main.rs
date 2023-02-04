@@ -1,7 +1,8 @@
 use std::fs::File;
 use std::io::prelude::*;
 
-fn calorie_counting(path: String) -> i32 {
+#[allow(dead_code)]
+fn find_top_elf(path: String) -> i32 {
     let mut f = File::open(path).expect("Could not open file");
     let mut contents = String::new();
     f.read_to_string(&mut contents).expect("Could not read from file");
@@ -38,12 +39,12 @@ mod tests {
 
     #[test]
     fn test_day1() {
-        assert_eq!(calorie_counting("./inputs/day1/input.txt".to_string()), 4);
+        assert_eq!(find_top_elf("./inputs/day1/input.txt".to_string()), 4);
     }
 
     #[test]
     fn test_day1_2() {
-        assert_eq!(calorie_counting("./inputs/day1/input2.txt".to_string()), 216);
+        assert_eq!(find_top_elf("./inputs/day1/input2.txt".to_string()), 216);
     }
 }
 
