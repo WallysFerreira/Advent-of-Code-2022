@@ -93,6 +93,12 @@ pub mod day1 {
 
         sum
     }
+
+    pub fn top_elf_number(path: String) -> i32 {
+        let elfs = find_top_three(path);
+
+        elfs[0].number
+    }
 }
 
 pub fn get_contents(path: String) -> String {

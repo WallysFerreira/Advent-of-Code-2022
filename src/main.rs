@@ -17,7 +17,7 @@ mod tests {
 
     #[test]
     fn test_day1_part2() {
-        assert_eq!(days::day1::top_three_sum("./inputs/day1/input.txt".to_string()), 45000);
+        assert_eq!(days::day1::top_three_sum("./inputs/day1/input".to_string()), 45000);
     }
 
     #[test]
