@@ -5,34 +5,6 @@ use std::collections::HashMap;
 pub mod day1 {
     use super::*;
 
-    /*#[allow(dead_code)]
-    pub fn top_elf_sum(path: String) -> i32 {
-        let mut f = File::open(path).expect("Could not open file");
-        let mut contents = String::new();
-        f.read_to_string(&mut contents).expect("Could not read from file");
-        let mut right_elf = 0;
-        let mut elf_count = 1;
-        let mut sum = 0;
-        let mut biggest_sum = 0;
-
-        for line in contents.lines() {
-            if line.is_empty() {
-                elf_count += 1; 
-                sum = 0;
-            } else {
-                sum += line.parse::<i32>().unwrap();
-            }
-
-            if sum > biggest_sum {
-                biggest_sum = sum;
-                right_elf = elf_count;
-            }
-        }
-
-        println!("{} is carrying the most amount of calories: {}", right_elf, biggest_sum);   
-        right_elf
-    }*/
-
     #[derive(Debug)]
     struct TopElfs {
         number: i32,
@@ -123,11 +95,63 @@ pub mod day1 {
     }
 }
 
+pub fn get_contents(path: String) -> String {
+    let mut f = File::open(path).expect("Could not open file");
+    let mut contents = String::new();
+    f.read_to_string(&mut contents).expect("Could not read file");
+
+    contents
+}
+
 pub mod day2 {
     use super::*;
 
     #[allow(dead_code)]
-    pub fn get_score(path: String) -> i32 {
-        
+    pub fn get_score(which: usize, path: String) -> i32 {
+        let chars: Vec<char> = get_contents(path).replace(" ", "").replace("\n", "").chars().collect();
+        let mut player1_score = 0;
+        let mut player2_score = 0;
+        let letter_to_play = HashMap::from([
+            ('A', String::from("Rock")),
+            ('X', String::from("Rock")),
+            ('B', String::from("Paper")),
+            ('Y', String::from("Paper")),
+            ('C', String::from("Scissors")),
+            ('Z', String::from("Scissors")),
+        ]);
+        let score_by_play = HashMap::from([
+            ("Rock".to_string(), 1),
+            ("Paper".to_string(), 2),
+            ("Scissors".to_string(), 3),
+        ]);
+
+        let mut play1: String;
+        let mut play2: String;
+        for i in (0..chars.len()).step_by(2) {
+            let j = i + 1;
+            play1 = String::from(letter_to_play.get(&chars[i]).unwrap());
+            play2 = String::from(letter_to_play.get(&chars[j]).unwrap());
+
+            if play1 == play2 {
+                player1_score += 3;
+                player2_score += 3;
+            } else if play1 == "Paper" && play2 == "Rock" {
+                player1_score += 6;
+            } else if play1 == "Scissors" && play2 == "Paper" {
+                player1_score += 6;
+            } else if play1 == "Rock" && play2 == "Scissors" {
+                player1_score += 6;
+            } else {
+                player2_score += 6;
+            }
+
+            player1_score += score_by_play.get(&play1).unwrap();
+            player2_score += score_by_play.get(&play2).unwrap();
+        }
+
+        let mut scores = Vec::new();
+        scores.push(player1_score);
+        scores.push(player2_score);
+        scores[which - 1]
     }
 }
