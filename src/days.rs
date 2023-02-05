@@ -4,7 +4,7 @@ use std::io::prelude::*;
 pub mod day1 {
     use super::*;
 
-    #[allow(dead_code)]
+    /*#[allow(dead_code)]
     pub fn top_elf_sum(path: String) -> i32 {
         let mut f = File::open(path).expect("Could not open file");
         let mut contents = String::new();
@@ -30,7 +30,7 @@ pub mod day1 {
 
         println!("{} is carrying the most amount of calories: {}", right_elf, biggest_sum);   
         right_elf
-    }
+    }*/
 
     #[derive(Debug)]
     struct TopElfs {
@@ -110,6 +110,13 @@ pub mod day1 {
         for i in 0..3 {
             sum += elfs[i].sum;
         }
+
+        sum
+    }
+
+    pub fn top_elf_sum(path: String) -> i32 {
+        let elfs = find_top_three(path);
+        let sum = elfs[0].sum;
 
         sum
     }
