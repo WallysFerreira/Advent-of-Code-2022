@@ -1,5 +1,6 @@
 use std::fs::File;
 use std::io::prelude::*;
+use std::collections::HashMap;
    
 pub mod day1 {
     use super::*;
@@ -122,3 +123,11 @@ pub mod day1 {
     }
 }
 
+pub mod day2 {
+    use super::*;
+
+    #[allow(dead_code)]
+    pub fn get_score(path: String) -> i32 {
+        
+    }
+}
