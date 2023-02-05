@@ -5,7 +5,7 @@ pub mod day1 {
     use super::*;
 
     #[allow(dead_code)]
-    pub fn find_top_elf(path: String) -> i32 {
+    pub fn top_elf_sum(path: String) -> i32 {
         let mut f = File::open(path).expect("Could not open file");
         let mut contents = String::new();
         f.read_to_string(&mut contents).expect("Could not read from file");
@@ -43,31 +43,55 @@ pub mod day1 {
         let mut f = File::open(path).expect("Could not open file");
         let mut contents = String::new();
         f.read_to_string(&mut contents).expect("Could not read from file");
-        let mut elf_count = 1;
-        let mut sum = 0;
         let mut top_three: Vec<TopElfs> = Vec::new();
 
         let mut elf1 = TopElfs { number: 0, sum: 0 };
         let mut elf2 = TopElfs { number: 0, sum: 0 };
         let mut elf3 = TopElfs { number: 0, sum: 0 };
 
+        let mut sum = 0;
+        let mut sums: Vec<i32> = Vec::new();
         for line in contents.lines() {
-            if line.is_empty() {
-                elf_count += 1; 
+            if line.is_empty() { 
+                sums.push(sum);
                 sum = 0;
             } else {
                 sum += line.parse::<i32>().unwrap();
             }
+        } 
 
-            if sum > elf1.sum {
-                elf1.sum = sum;
-                elf1.number = elf_count;
-            } else if sum > elf2.sum {
-                elf2.sum = sum;
-                elf2.number = elf_count;
-            } else if sum > elf3.sum {
-                elf3.sum = sum;
-                elf3.number = elf_count;
+        let mut i = 0;
+        let mut j = sums.len() - 1;
+        for _ in sums.iter() {
+            if sums[i] > sums[j] {
+                elf1.sum = sums[i];
+                elf1.number = i as i32 + 1;
+                if sums[j] > elf2.sum && sums[j] < elf1.sum {
+                    elf3.sum = elf2.sum;
+                    elf3.number = elf2.number;
+                    elf2.sum = sums[j];
+                    elf2.number = j as i32 + 1;
+                } else if sums[j] > elf3.sum && sums[j] < elf2.sum {
+                    elf3.sum = sums[j];
+                    elf3.number = j as i32 + 1;
+                }
+
+                j -= 1;
+            } else {
+                elf1.sum = sums[j];
+                elf1.number = j as i32 + 1;
+
+                if sums[i] > elf2.sum && sums[i] < elf1.sum {
+                    elf3.sum = elf2.sum;
+                    elf3.number = elf2.number;
+                    elf2.sum = sums[i];
+                    elf2.number = i as i32 + 1;
+                } else if sums[i] > elf3.sum && sums[i] < elf2.sum {
+                    elf3.sum = sums[i];
+                    elf3.number = i as i32 + 1;
+                }
+
+                i += 1;
             }
         }
 
