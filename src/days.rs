@@ -1,5 +1,6 @@
 use std::fs::File;
 use std::io::prelude::*;
+use std::collections::HashMap;
    
 pub mod day1 {
     use super::*;
@@ -23,7 +24,7 @@ pub mod day1 {
             }
 
             if sum > biggest_sum {
-                biggest_sum = sum;
+                biggest_sum = sum;hash_map
                 right_elf = elf_count;
             }
         }
@@ -119,6 +120,12 @@ pub mod day1 {
         let sum = elfs[0].sum;
 
         sum
+    }
+
+    pub fn top_elf_number(path: String) -> i32 {
+        let elfs = find_top_three(path);
+
+        elfs[0].number
     }
 }
 
