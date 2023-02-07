@@ -113,7 +113,7 @@ pub mod day2 {
     use super::*;
 
     #[allow(dead_code)]
-    pub fn get_score(which: usize, path: String) -> i32 {
+    pub fn get_score_2_plays(which: usize, path: String) -> i32 {
         let chars: Vec<char> = get_contents(path).replace(" ", "").replace("\n", "").chars().collect();
         let mut player1_score = 0;
         let mut player2_score = 0;
@@ -156,6 +156,53 @@ pub mod day2 {
         }
 
         let mut scores = Vec::new();
+        scores.push(player1_score);
+        scores.push(player2_score);
+        scores[which - 1]
+    }
+
+    #[allow(dead_code)]
+    pub fn get_score_by_outcome(which: usize, path: String) -> i32 {
+        let chars: Vec<char> = get_contents(path).replace(" ", "").replace("\n", "").chars().collect();
+        let mut player1_score = 0;
+        let mut player2_score = 0;
+        let mut scores: Vec<i32> = Vec::new();
+        let play_to_lose = HashMap::from([
+            ('C', 'B'),
+            ('B', 'A'),
+            ('A', 'C'),
+        ]);
+        let play_to_win = HashMap::from([
+            ('A', 'B'),
+            ('B', 'C'),
+            ('C', 'A'),
+        ]);
+        let score_by_play = HashMap::from([
+            ('A', 1),
+            ('B', 2),
+            ('C', 3),
+        ]);
+
+        for i in (0..chars.len()).step_by(2) {
+            let j = i + 1;
+
+            if chars[j] == 'X' {
+                let what_to_play = play_to_lose.get(&chars[i]).unwrap();
+
+                player1_score += 6 + score_by_play.get(&chars[i]).unwrap();
+                player2_score += score_by_play.get(&what_to_play).unwrap();
+            } else if chars[j] == 'Z' {
+                let what_to_play = play_to_win.get(&chars[i]).unwrap();
+
+                player1_score += score_by_play.get(&chars[i]).unwrap();
+                player2_score += 6 + score_by_play.get(&what_to_play).unwrap();
+            } else {
+                player1_score += 3 + score_by_play.get(&chars[i]).unwrap();
+                player2_score += 3 + score_by_play.get(&chars[i]).unwrap();
+            }
+
+        }
+
         scores.push(player1_score);
         scores.push(player2_score);
         scores[which - 1]
