@@ -13,7 +13,7 @@ mod tests {
 
     #[test]
     fn test_day1() {
-        assert_eq!(days::day1::top_elf_sum("./inputs/day1/input.txt".to_string()), 24000);
+        assert_eq!(days::day1::top_elf_sum("./inputs/day1/input".to_string()), 24000);
     }
 
     #[test]
