@@ -10,11 +10,20 @@ pub fn sum_priorities(path: String) -> i32 {
 }
 */
 
-pub fn get_halves(path: String) -> (String, String) {
+pub fn get_halves(path: String) -> Vec<String> {
     let contents = get_contents(path);
+    let mut halves = Vec::new();
 
-    println!("{:?}", contents);
-    ("n".to_string(), "b".to_string())
+    for lines in contents.split('\n') {
+        if !lines.is_empty() {
+            println!("{}", lines);
+            let (h1, h2) = lines.split_at(lines.len() / 2);
+            halves.push(h1.to_string());
+            halves.push(h2.to_string());
+        }
+    }
+
+    halves
 }
 /*
 pub fn find_items((halve1, halve2): (String, String)) -> Vec<char> {

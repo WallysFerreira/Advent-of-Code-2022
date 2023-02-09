@@ -7,7 +7,7 @@ fn main() {
     println!("Answer to day 2 part2: {}", days::day2::get_score_by_outcome(2, "./inputs/day2/inputr".to_string()));
     
 
-    days::day3::get_halves("./inputs/day3/input".to_string());
+    println!("{:?}", days::day3::get_halves("./inputs/day3/input".to_string()));
 }
 
 #[cfg(test)]
