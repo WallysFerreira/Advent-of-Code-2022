@@ -1,4 +1,4 @@
-use super::read::get_contents;
+use super::get_contents;
 
 // 1st find letters that are in both halves of string (case sensitive)
 // then sum priorities of each letters

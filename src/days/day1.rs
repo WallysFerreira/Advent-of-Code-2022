@@ -1,4 +1,4 @@
-use super::read::get_contents;
+use super::get_contents;
 
 #[derive(Debug)]
 struct TopElfs {

@@ -1,4 +1,4 @@
-use super::read::get_contents;
+use super::get_contents;
 use std::collections::HashMap;
 
 #[allow(dead_code)]

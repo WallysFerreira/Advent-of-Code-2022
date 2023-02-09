@@ -1,8 +1,8 @@
 mod days;
 
 fn main() {
-    println!("Answer to day 1: {}", days::day1::top_elf_sum("./inputs/day1/input2.txt".to_string()));
-    println!("Answer to day 1 part 2: {}", days::day1::top_three_sum("./inputs/day1/input2.txt".to_string()));
+    println!("Answer to day 1: {}", days::day1::top_elf_sum("./inputs/day1/input2".to_string()));
+    println!("Answer to day 1 part 2: {}", days::day1::top_three_sum("./inputs/day1/input2".to_string()));
     println!("Answer to day 2: {}", days::day2::get_score_2_plays(2, "./inputs/day2/inputr".to_string()));
     println!("Answer to day 2 part2: {}", days::day2::get_score_by_outcome(2, "./inputs/day2/inputr".to_string()));
     
