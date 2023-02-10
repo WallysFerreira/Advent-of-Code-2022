@@ -1,4 +1,4 @@
-use super::get_contents;
+use super::read::get_contents;
 use std::collections::HashMap;
 
 // 1st find letters that are in both halves of string (case sensitive)
