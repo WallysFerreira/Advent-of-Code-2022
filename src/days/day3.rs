@@ -3,8 +3,13 @@ use std::collections::HashMap;
 
 // 1st find letters that are in both halves of string (case sensitive)
 // then sum priorities of each letters
-pub fn sum_priorities(path: String) -> i32 {
-    let items = find_items(get_halves(path));
+pub fn sum_priorities(what: i32, path: String) -> i32 {
+    let items: Vec<char>;
+    if what == 1 {
+        items = find_items(get_halves(path));
+    } else {
+        items = find_badges(path);
+    }
     let mut sum = 0;
     let values = HashMap::from([
         ('a', 1), ('A', 27), ('b', 2), ('B', 28), ('c', 3), ('C', 29), ('d', 4), ('D', 30),
@@ -23,7 +28,7 @@ pub fn sum_priorities(path: String) -> i32 {
 }
 
 
-pub fn get_halves(path: String) -> Vec<String> {
+fn get_halves(path: String) -> Vec<String> {
     let contents = get_contents(path);
     let mut halves = Vec::new();
 
@@ -38,7 +43,7 @@ pub fn get_halves(path: String) -> Vec<String> {
     halves
 }
 
-pub fn find_items(halves: Vec<String>) -> Vec<char> {
+fn find_items(halves: Vec<String>) -> Vec<char> {
     let mut items: Vec<char> = Vec::new();
 
     for i in (0..halves.len()).step_by(2){
@@ -63,4 +68,21 @@ pub fn find_items(halves: Vec<String>) -> Vec<char> {
     }
 
     items
+}
+
+// Separate into groups of 3 lines
+// find items that are in all 3 lines
+fn find_badges(path: String) -> Vec<char>{
+    let contents = get_contents(path);
+    let mut lines: Vec<&str> = contents.split('\n').collect::<Vec<&str>>();
+    let mut badges: Vec<char> = Vec::new();
+
+    for i in (0..lines.len()).step_by(3) {
+        let j = i + 1;
+        let k = i + 2;
+        
+        println!("{}", lines[i].chars().all(|z| lines[j].chars().any(|x| x == z)));
+    }
+    
+    badges
 }
