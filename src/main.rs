@@ -52,5 +52,10 @@ mod tests {
     fn test_day3_part2() {
         assert_eq!(days::day3::sum_priorities(2, "./inputs/day3/input".to_string()), 70);
     }
+
+    #[test]
+    fn test_day4() {
+        assert_eq!(days::day4::count_overlaps("./inputs/day4/input".to_string()), 2);
+    }
 }
 
