@@ -27,7 +27,6 @@ pub fn sum_priorities(what: i32, path: String) -> i32 {
     sum
 }
 
-
 fn get_halves(path: String) -> Vec<String> {
     let contents = get_contents(path);
     let mut halves = Vec::new();
@@ -74,14 +73,22 @@ fn find_items(halves: Vec<String>) -> Vec<char> {
 // find items that are in all 3 lines
 fn find_badges(path: String) -> Vec<char>{
     let contents = get_contents(path);
-    let mut lines: Vec<&str> = contents.split('\n').collect::<Vec<&str>>();
+    let lines: Vec<&str> = contents.split('\n').collect::<Vec<&str>>();
     let mut badges: Vec<char> = Vec::new();
 
     for i in (0..lines.len()).step_by(3) {
         let j = i + 1;
         let k = i + 2;
+        let mut found = false;
         
-        println!("{}", lines[i].chars().all(|z| lines[j].chars().any(|x| x == z)));
+        for item in lines[i].chars() {
+            if lines[j].chars().any(|item2| item2 == item) && lines[k].chars().any(|item3| item3 == item) {
+                if !found {
+                    found = true;
+                    badges.push(item);
+                }
+            }
+        }
     }
     
     badges
