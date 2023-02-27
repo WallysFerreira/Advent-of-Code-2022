@@ -6,6 +6,45 @@ struct Range {
     end: i32,
 }
 
+fn fill_range(path: String) -> Vec<Vec<i32>> {
+    let ranges: Vec<Range> = find_range_limits(path);
+    let mut ranges_filled = Vec::new();
+
+    for i in 0..ranges.len() {
+        let mut fill = Vec::new();
+
+        for l in ranges[i].start..=ranges[i].end {
+            fill.push(l);
+        }
+
+        ranges_filled.push(fill);
+    }
+
+    ranges_filled
+}
+
+pub fn count_overlaps(path: String) -> i32 {
+    let ranges = fill_range(path);
+    let mut count = 0;
+
+    dbg!(&ranges);
+
+    for i in (0..ranges.len()).step_by(2) {
+        let j = i + 1;
+
+        if ranges[i].contains(ranges[j].iter().next().unwrap()) {
+            count += 1;
+            continue;
+        }
+
+        if ranges[j].contains(ranges[i].iter().next().unwrap()) {
+            count += 1;
+        }
+    }
+
+    count
+}
+
 // Calls expand_ranges
 fn find_range_limits(path: String) -> Vec<Range> {
     let contents = get_contents(path);
@@ -33,7 +72,7 @@ fn find_range_limits(path: String) -> Vec<Range> {
     ranges_collection
 }
 
-pub fn count_overlaps(path: String) -> i32 {
+pub fn count_full_overlaps(path: String) -> i32 {
     let ranges: Vec<Range> = find_range_limits(path);
     let mut count1: i32 = 0;
     let mut count2: i32 = 0;
