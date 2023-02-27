@@ -7,6 +7,7 @@ fn main() {
     println!("Answer to day 2 part 2: {}", days::day2::get_score_by_outcome(2, "./inputs/day2/inputr".to_string()));
     println!("Answer to day 3: {}", days::day3::sum_priorities(1, "./inputs/day3/inputr".to_string()));
     println!("Answer to day 3 part 2: {}", days::day3::sum_priorities(2, "./inputs/day3/inputr".to_string()));
+    println!("Answer to day 4: {}", days::day4::count_overlaps("./inputs/day4/inputr".to_string()));
 }
 
 #[cfg(test)]

@@ -6,19 +6,8 @@ struct Range {
     end: i32,
 }
 
-// Use for loop to expand ranges and insert into two vectors
-fn expand_ranges(ranges: Vec<Range>) -> (Vec<i32>, Vec<i32>){
-    for i in 0..ranges.len() {
-        for j in ranges[i].start..ranges[i].end {
-
-        }
-    }
-    
-    (Vec::from([0]), Vec::from([0]))
-}
-
 // Calls expand_ranges
-fn find_range_limits(path: String) {
+fn find_range_limits(path: String) -> Vec<Range> {
     let contents = get_contents(path);
     let mut ranges_collection: Vec<Range> = Vec::new();
 
@@ -41,13 +30,29 @@ fn find_range_limits(path: String) {
         ranges_collection.push(range2);
     }
 
-    println!("{:?}", ranges_collection);
+    ranges_collection
 }
 
 pub fn count_overlaps(path: String) -> i32 {
-    find_range_limits(path);
+    let ranges: Vec<Range> = find_range_limits(path);
+    let mut count1: i32 = 0;
+    let mut count2: i32 = 0;
 
-    0
+    for i in (0..ranges.len()).step_by(2) {
+        let j = i + 1;
+
+
+        if ranges[i].start <= ranges[j].start && ranges[i].end >= ranges[j].end {
+            count1 += 1;
+            continue;
+        }
+
+        if ranges[j].start <= ranges[i].start && ranges[j].end >= ranges[i].end {
+            count2 += 1;
+        }
+    }
+
+    count1 + count2
 }
 // Expand both ranges and store each number into a vector
 // check if one array is contained in the other
