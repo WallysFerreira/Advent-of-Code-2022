@@ -7,6 +7,8 @@ fn main() {
     println!("Answer to day 2 part 2: {}", days::day2::get_score_by_outcome(2, "./inputs/day2/inputr".to_string()));
     println!("Answer to day 3: {}", days::day3::sum_priorities(1, "./inputs/day3/inputr".to_string()));
     println!("Answer to day 3 part 2: {}", days::day3::sum_priorities(2, "./inputs/day3/inputr".to_string()));
+    println!("Answer to day 4: {}", days::day4::count_full_overlaps("./inputs/day4/inputr".to_string()));
+    println!("Answer to day 4 part 2: {}", days::day4::count_overlaps("./inputs/day4/inputr".to_string()));
 }
 
 #[cfg(test)]
@@ -51,6 +53,16 @@ mod tests {
     #[test]
     fn test_day3_part2() {
         assert_eq!(days::day3::sum_priorities(2, "./inputs/day3/input".to_string()), 70);
+    }
+
+    #[test]
+    fn test_day4() {
+        assert_eq!(days::day4::count_full_overlaps("./inputs/day4/input".to_string()), 2);
+    }
+
+    #[test]
+    fn test_day4_part2() {
+        assert_eq!(days::day4::count_overlaps("./inputs/day4/input".to_string()), 4);
     }
 }
 
