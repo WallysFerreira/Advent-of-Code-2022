@@ -1,6 +1,7 @@
 mod days;
 
 fn main() {
+    /*
     println!("Answer to day 1: {}", days::day1::top_elf_sum("./inputs/day1/input2".to_string()));
     println!("Answer to day 1 part 2: {}", days::day1::top_three_sum("./inputs/day1/input2".to_string()));
     println!("Answer to day 2: {}", days::day2::get_score_2_plays(2, "./inputs/day2/inputr".to_string()));
@@ -9,6 +10,8 @@ fn main() {
     println!("Answer to day 3 part 2: {}", days::day3::sum_priorities(2, "./inputs/day3/inputr".to_string()));
     println!("Answer to day 4: {}", days::day4::count_full_overlaps("./inputs/day4/inputr".to_string()));
     println!("Answer to day 4 part 2: {}", days::day4::count_overlaps("./inputs/day4/inputr".to_string()));
+    */
+    days::day5::caixas_no_topo("./inputs/day5/inputr".to_string());
 }
 
 #[cfg(test)]
@@ -26,9 +29,7 @@ mod tests {
     }
 
     #[test]
-    fn test_day2() {
-        assert_eq!(days::day2::get_score_2_plays(2, "./inputs/day2/input".to_string()), 15);
-    }
+    fn test_day2() { assert_eq!(days::day2::get_score_2_plays(2, "./inputs/day2/input".to_string()), 15); }
 
     #[test]
     fn test_day2_2() {
@@ -63,6 +64,11 @@ mod tests {
     #[test]
     fn test_day4_part2() {
         assert_eq!(days::day4::count_overlaps("./inputs/day4/input".to_string()), 4);
+    }
+
+    #[test]
+    fn test_day5() {
+        assert_eq!(days::day5::caixas_no_topo("./inputs/day5/input".to_string()), "CMZ".to_string())
     }
 }
 
