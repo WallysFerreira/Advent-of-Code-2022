@@ -1,5 +1,6 @@
 use super::read::get_contents;
 
+#[derive(Debug)]
 struct Instrucao {
     quantos: i32,
     de_qual: i32,
@@ -24,16 +25,31 @@ fn separar_instrucoes(path: String, what: i32) -> Vec<String> {
         }
     }
 
-    match what {
-        1 => return instructions,
-        2 => return drawing,
+    if what == 1 {
+        instructions
+    } else {
+        drawing
     }
-
 }
 
 // Pegar as instrucoes separadas e popular um vetor de struct Instrucao
 // com as informações de cada instrucao
-fn ler_instrucao() {
+fn ler_instrucao(instructions: Vec<String>) {
+    let mut instrucoes: Vec<i32> = Vec::new();
+
+    for instrucao in instructions.iter().next().expect("Erro").split_whitespace() {
+        if !instrucao.parse::<i32>().is_err() {
+            instrucoes.push(instrucao.parse::<i32>().expect("Erro"));
+        }
+    }
+
+    let fxnal: Instrucao = Instrucao {
+        quantos: instrucoes[0],
+        de_qual: instrucoes[1],
+        pra_onde: instrucoes[2]
+    };
+
+    println!("{:?}", fxnal);
 }
 
 // Ler um vetor de struct Instrucoes
@@ -44,5 +60,8 @@ fn executar_instrucao() {
 // Ver quais caixas estao no topo de cada pilha
 pub fn caixas_no_topo(path: String) -> String {
     let instrucoes: Vec<String> = separar_instrucoes(path, 1);
+
+    ler_instrucao(instrucoes);
+
     "Não terminei".to_string()
 }
