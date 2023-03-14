@@ -6,26 +6,29 @@ struct Instrucao {
     pra_onde: i32
 }
 
-fn separar_instrucoes(path: String) {
+// 1 to return instructions
+// 2 to return drawing
+fn separar_instrucoes(path: String, what: i32) -> Vec<String> {
     let arquivo = get_contents(path);
-    let mut desenho: String = String::new();
-    let mut instrucoes: String = String::new();
+    let mut drawing: Vec<String> = Vec::new();
+    let mut instructions: Vec<String> = Vec::new();
 
     for linha in arquivo.lines() {
         for palavra in linha.split_whitespace() {
             if palavra == "move".to_string() {
-                instrucoes.push_str(linha);
-                instrucoes.push('\n');
+                instructions.push(linha.to_string());
                 break;
             }
-            desenho.push_str(linha);
-            desenho.push('\n');
+            drawing.push(linha.to_string());
             break;
         }
     }
 
-    println!("{}", desenho);
-    println!("{}", instrucoes);
+    match what {
+        1 => return instructions,
+        2 => return drawing,
+    }
+
 }
 
 // Pegar as instrucoes separadas e popular um vetor de struct Instrucao
@@ -40,5 +43,6 @@ fn executar_instrucao() {
 
 // Ver quais caixas estao no topo de cada pilha
 pub fn caixas_no_topo(path: String) -> String {
+    let instrucoes: Vec<String> = separar_instrucoes(path, 1);
     "Não terminei".to_string()
 }
