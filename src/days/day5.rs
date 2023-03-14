@@ -41,13 +41,27 @@ fn ler_instrucao(instructions: Vec<String>) {
         let palavra: &str = &instructions[i];
 
         if !palavra.parse::<i32>().is_err() {
+            println!("AAAA");
             numeros.push(palavra.parse::<i32>().expect("Erro"));
         }
     }
 
-    let instrucoes_separadas: Vec<Instrucao> = Vec::new();
+    println!("{:?}", numeros);
 
-    println!("{:?}", instrucoes_separadas);
+    let mut instrucoes_separadas: Vec<Instrucao> = Vec::new();
+
+    for i in (0..numeros.len()).step_by(3) {
+        let j = i + 1;
+        let k = j + 1;
+
+        let instruction: Instrucao = Instrucao {
+            quantos: numeros[i],
+            de_qual: numeros[j],
+            pra_onde: numeros[k]
+        };
+
+        println!("{:?}", instruction);
+    }
 }
 
 // Ler um vetor de struct Instrucoes
