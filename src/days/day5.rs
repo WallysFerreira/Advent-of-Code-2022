@@ -38,15 +38,14 @@ fn ler_instrucao(instructions: Vec<String>) {
     let mut numeros: Vec<i32> = Vec::new();
 
     for i in 0..instructions.len() {
-        let palavra: &str = &instructions[i];
-
-        if !palavra.parse::<i32>().is_err() {
-            println!("AAAA");
-            numeros.push(palavra.parse::<i32>().expect("Erro"));
+        for palavra in instructions[i].split_whitespace() {
+            if !palavra.parse::<i32>().is_err() {
+                numeros.push(palavra.parse::<i32>().expect("Erro"));
+            }
         }
-    }
 
-    println!("{:?}", numeros);
+   }
+
 
     let mut instrucoes_separadas: Vec<Instrucao> = Vec::new();
 
