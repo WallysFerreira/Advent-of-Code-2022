@@ -1,10 +1,17 @@
 use super::read::get_contents;
 
 #[derive(Debug)]
+struct Caixa {
+    letra: char, // Qual letra da caixa
+    pilha: i32, // A qual pilha ela pertence
+    posicao: i32 // Qual posicao de cima pra baixo
+}
+
+#[derive(Debug)]
 struct Instrucao {
-    quantos: i32,
-    de_qual: i32,
-    pra_onde: i32
+    quantos: i32, // Quantas caixas mudar
+    de_qual: i32, // De qual pilha
+    pra_onde: i32 // Para qual pilha
 }
 
 // 1 to return instructions
@@ -30,6 +37,10 @@ fn separar_instrucoes(path: String, what: i32) -> Vec<String> {
     } else {
         drawing
     }
+}
+
+// Popular um vetor de Caixa com a informação inicial de todas as caixas
+fn separar_caixas() {
 }
 
 // Pegar as instrucoes separadas e popular um vetor de struct Instrucao
@@ -58,8 +69,6 @@ fn ler_instrucao(instructions: Vec<String>) {
             de_qual: numeros[j],
             pra_onde: numeros[k]
         };
-
-        println!("{:?}", instruction);
     }
 }
 
