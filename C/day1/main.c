@@ -26,11 +26,22 @@ void readFile(char * path, char (*text)[6]) {
 int main() {
 	char text[2560][6];
 	readFile("./test", text);
+	int max = 0;
+	int sum = 0;
 
 	for (int i = 0; i < 15; i++) {
+
 		if (*text[i] != '\n') {
-			printf("%s\n", text[i]);
+			sum += atoi(text[i]);
+		} else {
+			if (sum >= max) {
+				max = sum;
+			}
+
+			sum = 0;
 		}
 	}
+
+	printf("%d", max);
 	return 0;
 }
