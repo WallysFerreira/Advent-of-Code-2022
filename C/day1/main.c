@@ -8,7 +8,6 @@
 
 void readFile(char * path, char (*text)[6]) {
 	FILE *fp = fopen(path, "r");
-	char buf[2560][5];
 	int line = 0;
 
 	if (fp != NULL) {
