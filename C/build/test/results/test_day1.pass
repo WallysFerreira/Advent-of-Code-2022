@@ -1,0 +1,18 @@
+---
+:source:
+  :path: test
+  :file: test_day1.c
+:successes:
+- :test: test_sum_calories
+  :line: 15
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 1
+  :passed: 1
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.004628829000012047
